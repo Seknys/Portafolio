@@ -1,5 +1,7 @@
 <?php
 
+//Flinch wince
+use App\Http\Controllers\PortafolioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::view('portafolio','portafolio.index')->name('portafolio');
+Route::get('portafolio',[PortafolioController::class,'index'])->name('portafolio');
+Route::get('portafolio/create',[PortafolioController::class,'create'])->name('create');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

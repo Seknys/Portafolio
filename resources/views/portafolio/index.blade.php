@@ -21,6 +21,7 @@
     <h5 class="card-title">Categoria: {{$portafolio->categoria}} </h5>
     <h5 class="card-title">Imagen: {{$portafolio->imagen}} </h5>
     <h5 class="card-title">Video: {{$portafolio->url}} </h5>
+    <a href="{{route('show',$portafolio)}}" class="btn btn-primary bt-sm">Mas información </a>
     <hr>
     @empty
     <p>No existen proyectos</p>

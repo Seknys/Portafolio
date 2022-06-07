@@ -28,7 +28,15 @@ class PortafolioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Portafolio::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'categoria' => $request->categoria,
+            'url' => $request->video,
+            'imagen' => $request->imagen,
+        ]);
+        return redirect()->route('portafolio');
+    
     }
 
     /**
@@ -39,7 +47,8 @@ class PortafolioController extends Controller
      */
     public function show($id)
     {
-        //
+        $portafolio = Portafolio::find($id);
+        return view('portafolio.show',compact('portafolio'));
     }
 
     /**
@@ -50,7 +59,8 @@ class PortafolioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $portafolio = Portafolio::find($id);
+        return view('portafolio.edit',compact('portafolio'));
     }
 
     /**
@@ -60,9 +70,16 @@ class PortafolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Portafolio $portafolio)
     {
-        //
+        $portafolio->update([
+            'nombre' => request('nombre'),
+            'descripcion' => request('descripcion'),
+            'categoria' => request('categoria'),
+            'url' => request('video'),
+            'imagen' => request('imagen'),
+        ]);
+        return redirect()->route('show',$portafolio);
     }
 
     /**
@@ -73,6 +90,8 @@ class PortafolioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $portafolio = Portafolio::find($id);
+        $portafolio->delete();
+        return redirect()->route('portafolio'); 
     }
 }
